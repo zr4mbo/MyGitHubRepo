@@ -7,6 +7,7 @@ package training.entity.remote;
 
 import javax.ejb.Remote;
 
+//hello git
 /**
  *
  * @author zr4mbo

@@ -5,12 +5,14 @@
  */
 package training.entity;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,20 +45,15 @@ public class Questions implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
     @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="questionsseq")
     @SequenceGenerator(name="questionsseq" ,sequenceName="questionsseq", allocationSize=1)
-    @Column(name = "QUESTIONS_ID")
+    @Column(name = "QUESTIONS_ID",nullable=false)
     private Integer questionsId;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 32)
-    @Column(name = "QUESTIONTYPE")
+    @Column(name = "QUESTIONTYPE",nullable=false,length=32)
     private String questiontype;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "QUESTION")
+    @Column(name = "QUESTION",nullable=false,length=255)
     private String question;
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "CATEGORY_ID")
     @ManyToOne(optional = false)
@@ -143,4 +140,6 @@ public class Questions implements Serializable {
         return "training.entity.Questions[ questionsId=" + questionsId + " ]";
     }
     
+    
+   
 }

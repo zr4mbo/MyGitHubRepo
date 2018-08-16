@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+     <h:head>
+        <title>MyPage</title>
+        <h:outputStylesheet library="css" name="mainStyle.css" />
+        <h:outputScript library="js" name="mainScript.js" />
+      
+    </h:head>
+    <h:body>
+              <h1>Honfoglaló Kvíz Játék</h1>
+              <h:form id="login-form" prependId="false">
+                 
+              
+                  <h:panelGrid id="pG1" columns="1" cellpadding="2" cellspacing="1">
+                      <h:outputLabel id="outputL1" for="username" value="Felhasználónév:"/>
+                       <h:inputText id="username" value="#{myJSFManagedBean.username}" label="Username" >                      
+                    </h:inputText>
+                      <h:outputLabel id="outputL2" for="password" value="Jelszó:" />
+                          <h:inputSecret id="password" value="#{myJSFManagedBean.password}" label="Password" ></h:inputSecret>
+                   
+                  </h:panelGrid>
+                   
+                      <h:graphicImage id="pic1" url="resources/images/szavn.jpg" />
+                      
+                 <h:panelGrid id="pG2" columns="2" cellpadding="2" >
+                      
+                     <h:commandButton id="login" value="Bejelentkezés"  actionListener="#{myJSFManagedBean.login()}" />
+                      <h:commandButton id="signup" value="Regisztráció"  actionListener="#{myJSFManagedBean.signup()}" />
+                  </h:panelGrid>
+              </h:form>
+              
+              
+        
+    </h:body>
+</html>
+

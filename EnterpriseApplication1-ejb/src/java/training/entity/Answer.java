@@ -9,11 +9,14 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -36,17 +39,15 @@ public class Answer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "ANSWER_ID")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="answerseq1")
+    @SequenceGenerator(name="answerseq1" ,sequenceName="answerseq1", allocationSize=1)
+    @Column(name = "ANSWER_ID", nullable=false)
     private Integer answerId;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "CORRECT_")
+    @Column(name = "CORRECT_",nullable=false)
     private Boolean correct;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 1024)
-    @Column(name = "ANSWER_TEXT")
+    @Column(name = "ANSWER_TEXT",nullable=false, length=1024)
     private String answerText;
     @JoinColumn(name = "QUESTIONS_ID", referencedColumnName = "QUESTIONS_ID")
     @ManyToOne(optional = false)

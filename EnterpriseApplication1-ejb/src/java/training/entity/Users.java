@@ -11,10 +11,13 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -39,24 +42,19 @@ public class Users implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "USERS_ID")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="usersseq")
+    @SequenceGenerator(name="usersseq" ,sequenceName="usersseq", allocationSize=1)
+    @Column(name = "USERS_ID",nullable=false)
     private Integer usersId;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 128)
-    @Column(name = "USERNAME")
+    @Column(name = "USERNAME",nullable=false,length=128)
     private String username;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 64)
-    @Column(name = "PASSWORD")
+    @Column(name = "PASSWORD",nullable=false,length=64)
     private String password;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 128)
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL",nullable=false,length=128)
     private String email;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usersId")
     private Collection<Userpoints> userpointsCollection;

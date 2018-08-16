@@ -5,6 +5,7 @@
  */
 package training.bean;
 
+import java.io.File;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +26,7 @@ public class QuestionsFacade extends AbstractFacade<Questions> {
         return em;
     }
 
+   
     public QuestionsFacade() {
         super(Questions.class);
     }

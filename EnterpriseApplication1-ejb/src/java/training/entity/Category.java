@@ -11,10 +11,13 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -37,13 +40,12 @@ public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "CATEGORY_ID")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="categoryseq1")
+    @SequenceGenerator(name="categoryseq1" ,sequenceName="categoryseq1", allocationSize=1)
+    @Column(name = "CATEGORY_ID", nullable=false)
     private Integer categoryId;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "CATEGORYNAME")
+    @Column(name = "CATEGORYNAME", nullable=false, length=255)
     private String categoryname;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryId")
     private Collection<Questions> questionsCollection;

@@ -9,11 +9,14 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -34,12 +37,12 @@ public class Userpoints implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "USERPOINTS_ID")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="userpointsseq")
+    @SequenceGenerator(name="userpointsseq" ,sequenceName="userpointsseq", allocationSize=1)
+    @Column(name = "USERPOINTS_ID",nullable=false)
     private Integer userpointsId;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "POINTS")
+    @Column(name = "POINTS",nullable=false)
     private int points;
     @JoinColumn(name = "USERS_ID", referencedColumnName = "USERS_ID")
     @ManyToOne(optional = false)
